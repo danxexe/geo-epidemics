@@ -37,3 +37,4 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'mongoid', '~> 3.0.0.rc'
+gem 'slim', '~> 1.2.1'
