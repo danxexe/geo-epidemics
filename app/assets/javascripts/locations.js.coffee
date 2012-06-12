@@ -1,3 +1,5 @@
+# Location clent-side model
+
 window.Location = class Location
 
   constructor: (options = {}) ->
@@ -12,6 +14,16 @@ window.Location = class Location
 
   save: ->
     $.post('/locations.json', @attributes())
+
+  destroy: ->
+    $.ajax
+      dataType: 'json'
+      type: 'DELETE'
+      url: '/locations/by-position.json'
+      data: @attributes()
+
+    Location.locations.splice _.indexOf(Location.locations, @), 1
+    Location.locations_by_tag[@.tag].splice _.indexOf(Location.locations_by_tag[@.tag], @), 1
 
   @load: (callback) ->
     $.getJSON '/locations.json', (data) ->
@@ -37,6 +49,9 @@ window.Location = class Location
     location.save()
 
     location
+
+
+# Initialize map
 
 $ ->
   window.map = new GMaps
@@ -67,9 +82,16 @@ $ ->
       strokeOpacity: 1.0
       fillOpacity: 0.8
       strokeWeight: 3
+      click: map.markerCallback
 
     location.marker = circle
+    circle.location = location
     circle
+
+  map.markerCallback = ->
+    if $('#tools .selected').data('action') == 'destroy'
+      @.location.destroy()
+      map.removeOverlay @
 
 
   # Load existing locations

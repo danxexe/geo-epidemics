@@ -84,5 +84,15 @@
     &.selected .icon {
       box-shadow: 0 0 2px 2px #1caab7;
     }
+
+    &.destroy .icon {
+      color: red;
+      font-weight: bold;
+      text-align: center;
+      border: 1px solid red;
+
+      width: 13px;
+      height: 13px;
+    }
   }
 }

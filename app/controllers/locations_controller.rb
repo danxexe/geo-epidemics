@@ -13,6 +13,12 @@ class LocationsController < ApplicationController
     respond_with(location)
   end
 
+  def destroy
+    location = Location.where(position: location_params[:position]).destroy
+
+    respond_with(location)
+  end
+
   private
 
   def location_params
