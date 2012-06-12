@@ -59,9 +59,9 @@ $ ->
       radius: (Number) $('#marker-radius-picker').val()
       strokeColor: map.colors[location.tag]
       fillColor: map.colors[location.tag]
-      strokeOpacity: 0.8
+      strokeOpacity: 1.0
       fillOpacity: 0.8
-      strokeWeight: 1
+      strokeWeight: 3
 
     location.marker = circle
     circle
