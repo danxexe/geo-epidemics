@@ -30,13 +30,16 @@ window.Location = class Location
 
       $.each data, (k,v) ->
         location = new Location(v)
-        Location.all().push location
-        Location.by_tag(location.tag).push location
+        Location.push location
 
       callback(Location.all())
 
   @all: ->
     @locations ||= []
+
+  @push: (location) ->
+    Location.all().push location
+    Location.by_tag(location.tag).push location
 
   @by_tag: (tag) ->
     @locations_by_tag ||= {}
@@ -44,7 +47,7 @@ window.Location = class Location
 
   @create: (options = {}) ->
     location = new Location(options)
-    Location.all().push location
+    Location.push location
 
     location.save()
 
