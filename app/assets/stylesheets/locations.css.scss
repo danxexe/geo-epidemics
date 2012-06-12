@@ -7,7 +7,7 @@
   height: 100%;
 }
 
-#filters {
+#filters, #tools {
   position: absolute;
   bottom: 20px;
   right: 5px;
@@ -64,5 +64,25 @@
 
   .label {
     display: inline-block;
+  }
+}
+
+#tools {
+  bottom: 5px;
+  left: 5px;
+  right: auto;
+
+  padding: 1px;
+
+  li {
+    display: inline-block;
+
+    .icon {
+      margin-right: 0;
+    }
+
+    &.selected .icon {
+      box-shadow: 0 0 2px 2px #1caab7;
+    }
   }
 }

@@ -47,7 +47,7 @@ $ ->
     click: (e) ->
       location = Location.create
         position: [e.latLng.lat(), e.latLng.lng()]
-        tag: 'caso'
+        tag: $('#tools .selected').data('tag')
 
       map.addLocationMarker location
 
@@ -99,3 +99,11 @@ $ ->
 
     $.each Location.by_tag($e.data('tag')), (i, location) ->
       location.marker.set('visible', !$e.hasClass('disabled'))
+
+  # Change tag used on create
+
+  $('#tools li').click ->
+    $e = $(@)
+
+    $('#tools li').removeClass('selected')
+    $e.addClass('selected')
