@@ -6,3 +6,58 @@
   width: 100%;
   height: 100%;
 }
+
+#filters {
+  position: absolute;
+  bottom: 20px;
+  right: 5px;
+
+  padding: 8px;
+
+  background: white;
+  opacity: 0.9;
+
+  box-shadow: 0 0 5px 5px #AAA;
+
+  font-size: 12px;
+
+  ol {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    padding: 4px;
+  }
+
+  .icon {
+    display: inline-block;
+    vertical-align: text-bottom;
+
+    width: 15px;
+    height: 15px;
+
+    margin-right: 8px;
+
+    &:s.foco {
+
+    }
+    &.suspeita-foco {
+      background-color: #9595c9;
+    }
+    &.foco {
+      background-color: #983794;
+    }
+    &.suspeita-caso {
+      background-color: #f8991d;
+    }
+    &.caso {
+      background-color: #cb2027;
+    }
+  }
+
+  .label {
+    display: inline-block;
+  }
+}

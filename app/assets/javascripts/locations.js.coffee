@@ -42,20 +42,26 @@ $ ->
     click: (e) ->
       location = Location.create
         position: [e.latLng.lat(), e.latLng.lng()]
-        tag: 'red'
+        tag: 'caso'
 
-      map.addLocationMarker location        
+      map.addLocationMarker location
+
+  map.colors = 
+    'suspeita-foco': '#9595c9'
+    'foco': '#983794'
+    'suspeita-caso': '#f8991d'
+    'caso': '#cb2027'
 
   map.addLocationMarker = (location) ->
     circle = map.drawCircle
       lat: location.position[0]
       lng: location.position[1]
-      radius: 200
-      strokeColor: "#FF0000"
+      radius: (Number) $('#marker-radius-picker').val()
+      strokeColor: map.colors[location.tag]
+      fillColor: map.colors[location.tag]
       strokeOpacity: 0.8
+      fillOpacity: 0.8
       strokeWeight: 1
-      fillColor: "#FF0000"
-      fillOpacity: 0.35
 
     location.marker = circle
     circle
@@ -66,3 +72,14 @@ $ ->
   Location.load (locations) ->
     $.each locations, (i, location) ->
       map.addLocationMarker location
+
+
+  # change marker radius
+
+  $('#marker-radius-picker').change (e) ->
+    radius = (Number) $(@).val()
+
+    $.each Location.all(), (i, location) ->
+      location.marker.set('radius', radius )
+
+    true
