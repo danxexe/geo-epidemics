@@ -19,11 +19,16 @@ window.Location = class Location
       $.each data, (k,v) ->
         location = new Location(v)
         Location.all().push location
+        Location.by_tag(location.tag).push location
 
       callback(Location.all())
 
   @all: ->
     @locations ||= []
+
+  @by_tag: (tag) ->
+    @locations_by_tag ||= {}
+    @locations_by_tag[tag] ||= []
 
   @create: (options = {}) ->
     location = new Location(options)
@@ -67,14 +72,14 @@ $ ->
     circle
 
 
-  # load existing locations
+  # Load existing locations
 
   Location.load (locations) ->
     $.each locations, (i, location) ->
       map.addLocationMarker location
 
 
-  # change marker radius
+  # Change marker radius
 
   $('#marker-radius-picker').change (e) ->
     radius = (Number) $(@).val()
@@ -83,3 +88,14 @@ $ ->
       location.marker.set('radius', radius )
 
     true
+
+
+  # Show / hide tags
+
+  $('#filters li').click ->
+    $e = $(@)
+
+    $e.toggleClass('disabled')
+
+    $.each Location.by_tag($e.data('tag')), (i, location) ->
+      location.marker.set('visible', !$e.hasClass('disabled'))
