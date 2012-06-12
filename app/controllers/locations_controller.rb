@@ -7,4 +7,16 @@ class LocationsController < ApplicationController
     respond_with(@locations)
   end
 
+  def create
+    location = Location.create(location_params)
+
+    respond_with(location)
+  end
+
+  private
+
+  def location_params
+    params[:location]
+  end
+
 end
