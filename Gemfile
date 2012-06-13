@@ -37,6 +37,7 @@ gem 'jquery-rails'
 # gem 'debugger'
 
 gem 'thin'
+gem "eventmachine", '~> 1.0.0.beta.4.1', :platforms => [:mingw]
 
 gem 'mongoid', '~> 3.0.0.rc'
 gem 'slim', '~> 1.2.1'
