@@ -1,11 +1,7 @@
 production:
   sessions:
     default:
-      database: geo_epidemics
-      hosts:
-        - <%= ENV['MONGOHQ_URL'] %>
-      options:
-        consistency: :strong
+      uri: <%= ENV['MONGOHQ_URL'] %>
   options:
 
 development:
