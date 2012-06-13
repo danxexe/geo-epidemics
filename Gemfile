@@ -36,5 +36,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'debugger'
 
+gem 'thin'
+
 gem 'mongoid', '~> 3.0.0.rc'
 gem 'slim', '~> 1.2.1'
